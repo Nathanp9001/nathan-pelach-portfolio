@@ -1,5 +1,118 @@
 .portfolio {
-  color: #4682b4;
+  color: #f5f5f5;
+  background-color: #000;
+  width: 100vw;
+  height: 100vh;
+  font-family: Montserrat, sans-serif;
+}
+
+.nav-bar {
+  justify-content: space-around;
+  width: 60%;
+  display: flex;
+}
+
+*, :before, :after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.button-glowing {
+  cursor: pointer;
+  border-radius: .25em;
+  margin: 2rem;
+  padding: .5em 1em;
+  font-size: 1rem;
+  text-decoration: none;
+  display: inline-block;
+  position: relative;
+}
+
+.button-glowing__1 {
+  color: #ff1493;
+  text-shadow: 0 0 .125em #ffffff4d, 0 0 .45em #ff1493;
+  border: .125em solid #ff1493;
+  box-shadow: inset 0 0 .5em #ff1493, 0 0 .5em #ff1493;
+}
+
+.button-glowing:before {
+  content: "";
+  filter: blur(1.5em);
+  opacity: .7;
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 120%;
+  left: 0;
+  transform: perspective(1.5em)rotateX(45deg)scale(.8, .3);
+}
+
+.button-glowing.active:before {
+  animation: .5s ease-in-out scalingShadow;
+}
+
+@keyframes scalingShadow {
+  0% {
+    top: 120%;
+    transform: perspective(1.5em)rotateX(45deg)scale(.8, .3);
+  }
+
+  50% {
+    top: 165%;
+    transform: perspective(1.5em)rotateX(45deg)scale(.75, .3);
+  }
+
+  100% {
+    top: 120%;
+    transform: perspective(1.5em)rotateX(45deg)scale(.8, .3);
+  }
+}
+
+.button-glowing__1:before {
+  background: #ff1493;
+}
+
+.button-glowing:after {
+  content: "";
+  opacity: 0;
+  z-index: -1;
+  transition: opacity .1s linear;
+  position: absolute;
+  inset: 0;
+}
+
+.button-glowing__1:after {
+  background-color: #ff1493;
+  box-shadow: 0 0 2em .5em #ff1493;
+}
+
+.button-glowing:hover:before, .button-glowing:focus:before, .button-glowing:hover:after, .button-glowing:focus:after {
+  opacity: 1;
+}
+
+.button-glowing:hover, .button-glowing:focus {
+  color: #1d1e22;
+  text-shadow: none;
+  outline: none;
+}
+
+.active {
+  animation: .5s ease-in-out animate;
+}
+
+@keyframes animate {
+  0% {
+    transform: translateY(0%);
+  }
+
+  50% {
+    transform: translateY(-40%);
+  }
+
+  100% {
+    transform: translateY(0%);
+  }
 }
 
 /*# sourceMappingURL=index.ce1d6491.css.map */

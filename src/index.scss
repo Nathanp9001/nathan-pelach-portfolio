@@ -1,5 +1,129 @@
-$color: steelblue;
+$color-text: whitesmoke;
+$glow-one: rgb(255, 20, 147);
+$glow-two: rgb(127, 255, 0);
+$glow-three: rgb(138, 43, 226);
+$glow-background: #1d1e22;
 
 .portfolio {
-  color: $color;
+  width: 100vw;
+  height: 100vh;
+  font-family: 'Montserrat', sans-serif;
+  color: $color-text;
+  background-color: black;
+}
+
+.nav-bar {
+  width: 60%;
+  display: flex;
+  justify-content: space-around;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.button-glowing {
+  font-size: 1rem;
+  display: inline-block;
+  cursor: pointer;
+  text-decoration: none;
+  padding: 0.5em 1em;
+  margin: 2rem;
+  border-radius: 0.25em;
+  position: relative;
+}
+
+.button-glowing__1 {
+  color: $glow-one;
+  border: $glow-one 0.125em solid;
+  text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3), 0 0 0.45em $glow-one;
+  box-shadow: inset 0 0 0.5em 0 $glow-one, 0 0 0.5em 0 $glow-one;
+}
+
+.button-glowing::before {
+  content: "";
+  position: absolute;
+  top: 120%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: perspective(1.5em) rotateX(45deg) scale(0.8, 0.3);
+  filter: blur(1.5em);
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.button-glowing.active::before {
+  animation: scalingShadow 0.5s ease-in-out;
+}
+
+@keyframes scalingShadow {
+  0% {
+    top: 120%;
+    transform: perspective(1.5em) rotateX(45deg) scale(0.8, 0.3);
+  }
+  50% {
+    top: 165%;
+    transform: perspective(1.5em) rotateX(45deg) scale(0.75, 0.3);
+  }
+  100% {
+    top: 120%;
+    transform: perspective(1.5em) rotateX(45deg) scale(0.8, 0.3);
+  }
+}
+
+.button-glowing__1::before {
+  background: $glow-one;
+}
+
+.button-glowing::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 100ms linear;
+}
+
+.button-glowing__1::after {
+  box-shadow: 0 0 2em 0.5em $glow-one;
+  background-color: $glow-one;
+}
+.button-glowing:hover::before,
+.button-glowing:focus::before {
+  opacity: 1;
+}
+
+.button-glowing:hover::after,
+.button-glowing:focus::after {
+  opacity: 1;
+}
+
+.button-glowing:hover,
+.button-glowing:focus {
+  outline: none;
+  color: $glow-background;
+  text-shadow: none;
+}
+
+.active {
+  animation: animate 0.5s ease-in-out;
+}
+
+@keyframes animate {
+  0% {
+    transform: translateY(0%);
+  }
+  50% {
+    transform: translateY(-40%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
 }
